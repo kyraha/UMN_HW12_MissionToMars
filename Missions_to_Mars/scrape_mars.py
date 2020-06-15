@@ -96,7 +96,7 @@ def scrape():
 
     # %%
     browser.visit("https://twitter.com/marswxreport?lang=en")
-    time.sleep(5.0)
+    time.sleep(2.0)
     weather_html = browser.html
 
 
@@ -155,7 +155,7 @@ def scrape():
     for item in results.find_all("div", class_="item"):
         title = item.find("div", class_="description").a.text
         browser.find_link_by_partial_text(title).first.click()
-        original_img = browser.find_link_by_partial_text("Original").first.outer_html
+        original_img = browser.find_link_by_partial_text("Sample").first.outer_html
         img_url = BeautifulSoup(original_img, 'html.parser').find('a')['href']
         browser.back()
         hemisphere_image_urls.append({
